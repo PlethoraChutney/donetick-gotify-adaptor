@@ -4,29 +4,29 @@ const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 
 const port = parseInt(process.env.LISTEN_PORT || "52001");
-const gotifyEndpoint = process.env.GOTIFY_ENDPOINT;
 const gotifyKey = process.env.GOTIFY_KEY;
+const gotifyEndpoint = new URL(process.env.GOTIFY_ENDPOINT);
+const gotifyUrl = new URL(`/message?token=${gotifyKey}`, gotifyEndpoint);
 const gotfiyPriority = parseInt(process.env.GOTIFY_PRIORITY || "5");
 
 const app = connect();
 app.use(bodyParser.json());
 
 app.use(async (req, res) => {
-    console.log("Input\n", req.body);
     if (req.body.type === "task.reminder") {
+		
         const notifBody = {
             title: `${req.body.data.name} is due`,
-            message: `This task was due at ${req.body.data.due_date}`,
+            message: "Once you finish it, don't forget to check it off in Donetick!",
             priority: gotfiyPriority
         }
         await fetch(
-            gotifyEndpoint,
+            gotifyUrl,
             {
                 method: "POST",
                 body: JSON.stringify(notifBody),
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-Gotify-Key": gotifyKey
+                    "Content-Type": "application/json"
                 }
             }
         )
