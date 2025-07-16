@@ -15,8 +15,8 @@ app.use(async (req, res) => {
     console.log("Input\n", req.body);
     if (req.body.type === "task.reminder") {
         const notifBody = {
-            title: "Test notification",
-            message: req.body.data,
+            title: `${req.body.data.name} is due`,
+            message: `This task was due at ${req.body.data.due_date}`,
             priority: gotfiyPriority
         }
         await fetch(
