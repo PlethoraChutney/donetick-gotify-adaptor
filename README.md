@@ -1,0 +1,4 @@
+# Donetick Gotify Adaptor
+
+Middleware to convert [Donetick webhooks](https://docs.donetick.com/advance-settings/webhooks)
+to[ Gotify notifications](https://gotify.net/).
