@@ -1,0 +1,16 @@
+{
+  "name": "donetick-gotify-adaptor",
+  "version": "1.0.0",
+  "description": "Send donetick notifications to gotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rich Waldo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "connect": "^3.7.0",
+    "node-fetch": "^3.3.2"
+  }
+}
